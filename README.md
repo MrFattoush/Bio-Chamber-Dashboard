@@ -1,8 +1,8 @@
 # Bio-Chamber-Dashboard
 
 Mind in Vitro Data Analysis UI
-📌 Overview
 
+📌 Overview
 This project was developed as part of my Undergraduate Research at the University of Illinois Urbana-Champaign (May 2024 – August 2024) under the Mind in Vitro program.
 
 The application provides a user interface and web-based platform for analyzing environmental sensor data—specifically:
