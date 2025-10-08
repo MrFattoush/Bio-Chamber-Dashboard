@@ -24,7 +24,7 @@ def load_data(filename, start_row=0, num_rows=None, end_time=None, start_time=No
     else:
         df = pd.read_csv(filename, header=None, names=column_names, on_bad_lines='skip', skiprows=start_row, nrows=num_rows)
     df = df.apply(pd.to_numeric, errors='coerce')
-    df.replace(0, pd.NaT, inplace=True)
+    df.replace(0, pd.NA, inplace=True)
     
     # Create a time series starting from a specific time and going forwards every second
     time_index = pd.date_range(start=start_time, periods=len(df), freq='s')
@@ -47,7 +47,7 @@ start_time = datetime(2024,4,18,13,45,0)
 total_rows = len(load_data('041924_1.TXT', start_time=start_time))
 df = load_data('041924_1.TXT', end_time=end_time, start_time=start_time)
 last_row = len(df)
-curr_time = 0
+curr_time = len(df)
 # Get the last data point of each column
 last_data_points = df.iloc[-1]
 
@@ -160,6 +160,7 @@ app.layout = html.Div([
     
     # Add the download button and the Download component here
     html.Button('Download Data', id='download-button', style={'marginTop': '20px'}),
+    dcc.Download(id='download-dataframe-csv'),
     dcc.Download(id='download-selected-date-dataframe-csv'),
     
     html.Div([
